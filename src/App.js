@@ -24,13 +24,20 @@ const localizeISODateString = (date) => {
  * @returns App <div> rendering
  */
 const App = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(
+    JSON.parse(window.localStorage.getItem("todos")) || []
+  );
   const [todoText, setTodoText] = useState("");
   const [edit, setEdit] = useState(false);
   const [date, setDate] = useState(
     localizeISODateString(new Date().toISOString())
   );
   const [currentTime, setCurrentTime] = useState(new Date());
+
+  const setTodosWrapper = (newTodos) => {
+    window.localStorage.setItem("todos", JSON.stringify(newTodos));
+    return setTodos(newTodos);
+  };
 
   const getCurrentTime = () => {
     setCurrentTime(new Date());
@@ -39,7 +46,7 @@ const App = () => {
 
   const addTodo = () => {
     if (todoText !== "") {
-      setTodos([
+      setTodosWrapper([
         ...todos,
         {
           text: todoText,
@@ -57,26 +64,26 @@ const App = () => {
     const newTodos = todos.filter((_, index) => {
       return index !== key;
     });
-    setTodos(newTodos);
+    setTodosWrapper(newTodos);
   };
 
   const editTodo = (edit, key) => {
     const newTodos = [...todos];
     newTodos[key].text = edit;
-    setTodos(newTodos);
+    setTodosWrapper(newTodos);
   };
 
   const editDueDate = (edit, key) => {
     const newTodos = [...todos];
     newTodos[key].dueDate = edit;
-    setTodos(newTodos);
+    setTodosWrapper(newTodos);
   };
 
   const markDone = (key) => {
     const newTodos = [...todos.filter((_, index) => index !== key), todos[key]];
     newTodos[newTodos.length - 1].isDone =
       !newTodos[newTodos.length - 1].isDone;
-    setTodos(newTodos);
+    setTodosWrapper(newTodos);
   };
 
   useEffect(() => {
