@@ -1,4 +1,4 @@
-const TodoForm = ({ input, setTodo, dueDate, setDueDate, addTodo }) => {
+const TodoForm = ({ todoText, setTodoText, dueDate, setDueDate, addTodo }) => {
   return (
     <div className="container mb-4">
       <div className="container align-self-center mb-2">
@@ -6,10 +6,10 @@ const TodoForm = ({ input, setTodo, dueDate, setDueDate, addTodo }) => {
           className="form-control"
           type="text"
           name="formTodoInput"
-          value={input}
+          value={todoText}
           placeholder="Create a new todo"
           onChange={(e) => {
-            setTodo(e.target.value);
+            setTodoText(e.target.value);
           }}
         />
       </div>
