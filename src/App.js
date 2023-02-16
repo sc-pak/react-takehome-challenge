@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TodoInput from "./TodoInput";
+import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import "./App.css";
 
@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>React Todo App</h1>
-      <TodoInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
+      <TodoForm todo={todo} setTodo={setTodo} addTodo={addTodo} />
       <TodoList list={todos} remove={deleteTodo} />
     </div>
   );
