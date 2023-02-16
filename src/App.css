@@ -15,7 +15,7 @@ body {
 
 .App {
   padding: 1rem;
-  max-width: 50%;
+  max-width: 60%;
   margin: 0 auto;
   text-align: center;
   background: #333;
@@ -46,13 +46,42 @@ h1 {
 }
 
 input {
-  width: 450px;
+  width: 100%;
   padding: 0.8em;
+  background-color: #333;
+  color: white;
 }
 
-input:focus {
-  outline: none;
+input[type="text"], textarea {
+  background-color: #494847;
+  color: white;
+  border: none
 }
+
+input[name="formDueDate"]{
+  border:none;
+}
+
+input[name="todoDueDate"], input[name="formDueDate"] {
+  word-wrap: break-word;
+  word-break: break-all;
+  background-color: #494847;
+  color: white;
+  border: none
+}
+
+input[name="todoDueDate"]:focus, input[name="formDueDate"]:focus {
+  outline: auto;
+}
+
+.inputs {
+  background-color: white
+}
+
+:focus {
+  outline:auto;
+}
+
 
 button {
   width: 120px;
@@ -62,7 +91,6 @@ button {
   letter-spacing: 0.1rem;
 }
 
-input,
 button {
   font-size: 1em;
   appearance: none;
@@ -73,7 +101,8 @@ button {
 
 .add-button {
   margin-top: 0.2em;
-  color: orange;
+  color: #252525;
+  background: orange
 }
 
 .add-button:hover {
@@ -90,8 +119,54 @@ button {
 
 .delete-button:hover {
   color: #252525;
-
   background: #fe6a6a;
+}
+
+.edit-button {
+  border: none;
+  color: #cf972e;
+  margin-right: 0;
+}
+
+.edit-button:hover {
+  color: #252525;
+
+  background: #cf972e;
+}
+
+
+textarea[name="formTodoInput"], input[name="formDueDate"] {
+  background-color: #494847;
+  color: white;
+  border: none;
+  min-height: 1.5rem;
+  height: 2.2rem;
+}
+
+textarea[name="formTodoInput"]::placeholder {
+  color: rgb(146, 146, 146);
+}
+
+
+textarea[name="formTodoInput"]:focus, input[name="formDueDate"]:focus {
+  background-color: #494847;
+  border: none;
+  outline: auto;
+  color: white;
+}
+
+
+
+.toggle-done-button {
+  border: none;
+  color: #cf972e;
+  margin-right: 0;
+}
+
+.toggle-done-button:hover {
+  color: #252525;
+  border: none;
+  background: #cf972e;
 }
 
 .todo-list {
@@ -99,6 +174,7 @@ button {
   list-style: none;
   margin-bottom: 0px;
 }
+
 .todo {
   text-align: left;
   margin-bottom: 0.5rem;
@@ -110,7 +186,12 @@ button {
   justify-content: center;
   align-items: center;
 }
+
 .todo-entry {
+  padding-left: 5px;
+}
+
+.todo-item {
   padding-left: 5px;
 }
 
