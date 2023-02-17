@@ -59,4 +59,4 @@ Features have been implemented without the addition of new npm modules so the ap
 
 ## Screenshots
 
-![Demo](./public/demo.mp4)
+![Demo](./public/demo.gif)
