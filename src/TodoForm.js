@@ -1,7 +1,18 @@
-const TodoForm = ({ todoText, setTodoText, dueDate, setDueDate, addTodo }) => {
+import Tags from "./Tags";
+
+const TodoForm = ({
+  todoText,
+  setTodoText,
+  dueDate,
+  setDueDate,
+  addTodo,
+  tags,
+  removeTag,
+  selectTag,
+}) => {
   return (
     <div className="container mb-4">
-      <div className="container align-self-center mb-2">
+      <div className="textInput-group container align-self-center mb-2">
         <textarea
           className="form-control"
           type="text"
@@ -14,8 +25,8 @@ const TodoForm = ({ todoText, setTodoText, dueDate, setDueDate, addTodo }) => {
         />
       </div>
 
-      <div className="container mb-2">
-        <div className="row text-end justify-content-end ms-auto align-self-end">
+      <div className="dateInput-group container mb-2">
+        <div className="row text-end justify-content-start ms-auto align-self-end">
           <div className="col-4 text-start align-self-center">
             <label htmlFor="dueDate" style={{ color: "white" }}>
               Set Due Date:
@@ -37,7 +48,27 @@ const TodoForm = ({ todoText, setTodoText, dueDate, setDueDate, addTodo }) => {
         </div>
       </div>
 
-      <div className="container justify-content-center">
+      <div className="tagSelect-group container mb-2">
+        <div className="row text-start justify-content-start ms-auto align-self-end">
+          <div className="col-3 text-start align-self-center">
+            <label htmlFor="dueDate" style={{ color: "white" }}>
+              Select Tags:
+            </label>
+          </div>
+
+          <div className="col-6 text-start align-self-center">
+            <Tags list={tags} remove={removeTag} select={selectTag} />
+          </div>
+
+          <div className="col-3 text-end align-self-center">
+            <button className="badge bg-secondary" style={{ width: "auto" }}>
+              Add Tag
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="createTaskButton-group container justify-content-center">
         <button
           className="col-12 add-button btn btn-outline-secondary"
           onClick={addTodo}

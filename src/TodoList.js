@@ -14,19 +14,16 @@ const TodoList = ({
         <div className="container todo-list">
           <ul className="list-group">
             {list.map((todo, index) => (
-              <li key={index} className="list-group-item todo">
-                <div key={index} className="container text-center">
-                  <Todo
-                    index={index}
-                    todo={todo}
-                    editTodo={editTodo}
-                    currentTime={currentTime}
-                    markDone={markDone}
-                    editDueDate={editDueDate}
-                    remove={remove}
-                  />
-                </div>
-              </li>
+              <Todo
+                key={index}
+                index={index}
+                todo={todo}
+                editTodo={editTodo}
+                currentTime={currentTime}
+                markDone={markDone}
+                editDueDate={editDueDate}
+                remove={remove}
+              />
             ))}
           </ul>
         </div>
