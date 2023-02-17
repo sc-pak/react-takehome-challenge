@@ -9,6 +9,8 @@ const TodoList = ({
   remove,
   removeTag,
 }) => {
+  let doneMessage = "Yer done did!";
+
   return (
     <>
       {list?.length > 0 ? (
@@ -31,7 +33,7 @@ const TodoList = ({
         </div>
       ) : (
         <div className="empty">
-          <p>No task found</p>
+          <p>{doneMessage}</p>
         </div>
       )}
     </>

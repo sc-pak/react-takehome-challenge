@@ -84,7 +84,7 @@ const TodoForm = ({
           className="col-12 add-button btn btn-outline-secondary"
           onClick={addTodo}
         >
-          Create Task
+          Create To-do
         </button>
       </div>
     </div>

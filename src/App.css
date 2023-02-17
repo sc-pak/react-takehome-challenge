@@ -30,11 +30,12 @@ body {
   text-align: center;
   background: #333;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
+  border-radius: 2%;
 }
 
 h1 {
   font-weight: 300;
-  color: orange;
+  color: #fff;
   font-size: 2.5rem;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
@@ -111,13 +112,13 @@ button {
 
 .add-button {
   margin-top: 0.2em;
-  color: #252525;
-  background: orange
+  color: #fff;
+  background: rgb(147, 147, 255)
 }
 
 .add-button:hover {
-  color: #252525;
-  background: #44c0b6;
+  color: #fff;
+  background: rgb(114, 114, 201);
 }
 
 .delete-button {
@@ -172,14 +173,14 @@ textarea[name="formTodoInput"]:focus, input[name="formDueDate"]:focus {
 
 .toggle-done-button {
   border: none;
-  color: #cf972e;
+  color: #02ba49;
   margin-right: 0;
 }
 
 .toggle-done-button:hover {
   color: #252525;
   border: none;
-  background: #cf972e;
+  background: #02ba49;
 }
 
 .todo-list {
@@ -211,6 +212,6 @@ textarea[name="formTodoInput"]:focus, input[name="formDueDate"]:focus {
 .empty {
   font-size: 20px;
   font-weight: 400;
-  color: #cf972e;
+  color: #fff;
   letter-spacing: 0.2rem;
 }

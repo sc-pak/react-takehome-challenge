@@ -160,7 +160,7 @@ const App = () => {
 
   return (
     <div className="App container">
-      <h1>React Todo App</h1>
+      <h1 className="mb-4">To-do list</h1>
 
       <TodoForm
         todoText={todoText}
