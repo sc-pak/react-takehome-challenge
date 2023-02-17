@@ -1,8 +1,8 @@
 function SortDropdown(props) {
   return (
-    <div className="col-2 dropdown">
+    <div className="col-6 text-end dropdown">
       <button
-        className="btn btn-secondary dropdown-toggle"
+        className="btn btn-secondary btn-sm col-8 dropdown-toggle"
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"

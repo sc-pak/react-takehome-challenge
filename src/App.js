@@ -282,7 +282,7 @@ const App = () => {
       {todos.filter((todo) => !todo.isDone)?.length ? (
         <>
           <div className="container">
-            <div className="container row justify-content-end mb-3">
+            <div className="row justify-content-end mb-3">
               <SortDropdown
                 sortBy={sortBy}
                 setSortBy={setSortBy}
