@@ -231,24 +231,23 @@ const App = () => {
               />
             </div>
           </div>
-
-          <TodoList
-            list={todos}
-            remove={deleteTodo}
-            edit={edit}
-            editTodo={editTodo}
-            setEdit={setEdit}
-            editDueDate={editDueDate}
-            markDone={markDone}
-            currentTime={currentTime}
-            removeTag={deleteTodoTag}
-            seed={seed}
-          />
         </>
       ) : (
         ""
       )}
 
+      <TodoList
+        list={todos}
+        remove={deleteTodo}
+        edit={edit}
+        editTodo={editTodo}
+        setEdit={setEdit}
+        editDueDate={editDueDate}
+        markDone={markDone}
+        currentTime={currentTime}
+        removeTag={deleteTodoTag}
+        seed={seed}
+      />
       <DoneList
         list={todos}
         remove={deleteTodo}
