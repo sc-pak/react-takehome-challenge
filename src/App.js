@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
+import SortDropdown from "./SortDropdown";
 import "./App.css";
 
 const localizeISODateString = (date) => {
@@ -56,6 +57,7 @@ const App = () => {
 
   const [priority, setPriority] = useState("none");
   const [seed, setSeed] = useState(Math.random());
+  const [sortBy, setSortBy] = useState("earliestDueDate");
 
   // Update Methods
 
@@ -148,6 +150,53 @@ const App = () => {
     setTodosWrapper(newTodos);
   };
 
+  const sortTodos = (sortType) => {
+    console.log("inside sortTodo function with sortType: ", sortType);
+    let sortedTodos = [...todos];
+    let Priorities = {
+      high: 3,
+      medium: 2,
+      low: 1,
+      none: 0,
+    };
+    if (sortType.toLowerCase() === "earliest due date") {
+      console.log("sorting by earliest due date");
+      sortedTodos.sort((a, b) => {
+        if (a.dueDate > b.dueDate) {
+          return 1;
+        } else if (a.dueDate < b.dueDate) {
+          return -1;
+        } else if (a.dueDate === b.dueDate) {
+          return 0;
+        }
+      });
+    } else if (sortType.toLowerCase() === "highest priority") {
+      console.log("sorting by highest priority");
+      sortedTodos.sort((a, b) => {
+        if (Priorities[a.priority] > Priorities[b.priority]) {
+          return -1;
+        } else if (Priorities[a.priority] < Priorities[b.priority]) {
+          return 1;
+        } else if (Priorities[a.priority] === Priorities[b.priority]) {
+          return 0;
+        }
+      });
+    } else if (sortType.toLowerCase() === "latest due date") {
+      console.log("sorting by highest priority");
+      sortedTodos.sort((a, b) => {
+        if (a.dueDate > b.dueDate) {
+          return -1;
+        } else if (a.dueDate < b.dueDate) {
+          return 1;
+        } else if (a.dueDate === b.dueDate) {
+          return 0;
+        }
+      });
+    }
+
+    setTodosWrapper(sortedTodos);
+  };
+
   // Effects
 
   useEffect(() => {
@@ -173,6 +222,16 @@ const App = () => {
         setPriority={setPriority}
         priority={priority}
       />
+
+      <div className="container">
+        <div className="container row justify-content-end mb-3">
+          <SortDropdown
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            sortTodos={sortTodos}
+          />
+        </div>
+      </div>
 
       <TodoList
         list={todos}
