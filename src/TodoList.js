@@ -48,7 +48,7 @@ const TodoList = ({
         </div>
       ) : (
         <div className="empty">
-          <p>{doneMessages[Math.floor(seed * doneMessages.length)]}</p>
+          <h2>{doneMessages[Math.floor(seed * doneMessages.length)]}</h2>
         </div>
       )}
     </>

@@ -12,7 +12,7 @@ const DoneList = ({
   return (
     <>
       {list.filter((todo) => todo.isDone)?.length ? (
-        <div className="container todo-list">
+        <div className="container todo-list border-top mt-4 p-3">
           <h2>Completed To-Dos</h2>
           <ul className="list-group">
             {list.map((todo, index) =>
