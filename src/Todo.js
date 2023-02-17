@@ -63,7 +63,7 @@ function Todo({
                   >
                     Due:
                   </label>
-                  <div className="col-8 align-self-center">
+                  <div className="col-10 align-self-center">
                     <input
                       className="col-md-8 text-end align-self-center"
                       name="todoDueDate"
