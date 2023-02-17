@@ -44,7 +44,6 @@ const TodoForm = ({
               name="formDueDate"
               value={dueDate}
               onChange={(e) => {
-                console.log("e", e);
                 setDueDate(e.target.value);
               }}
             />

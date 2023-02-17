@@ -106,7 +106,6 @@ const App = () => {
   };
 
   const deleteAvailableTag = (key) => {
-    console.log(tags);
     const newTags = tags.filter((_, index) => {
       return index !== key;
     });
@@ -127,7 +126,6 @@ const App = () => {
   const toggleTagSelection = (key) => {
     const newTags = [...tags];
     newTags[key].selected = !newTags[key].selected;
-    console.log("new tags:", newTags);
     setTags(newTags);
   };
 
