@@ -24,15 +24,38 @@ const localizeISODateString = (date) => {
  * @returns App <div> rendering
  */
 const App = () => {
+  // States
+  const [edit, setEdit] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [date, setDate] = useState(
+    localizeISODateString(new Date().toISOString())
+  );
   const [todos, setTodos] = useState(
     JSON.parse(window.localStorage.getItem("todos")) || []
   );
   const [todoText, setTodoText] = useState("");
-  const [edit, setEdit] = useState(false);
-  const [date, setDate] = useState(
-    localizeISODateString(new Date().toISOString())
+  const [tags, setTags] = useState(
+    JSON.parse(window.localStorage.getItem("tags")) || [
+      {
+        text: "high",
+        color: "red",
+        selected: false,
+      },
+      {
+        text: "medium",
+        color: "yellow",
+        selected: false,
+      },
+      {
+        text: "low",
+        color: "green",
+        selected: false,
+      },
+    ]
   );
-  const [currentTime, setCurrentTime] = useState(new Date());
+  // const [priority, setPriority] = useState(null);
+
+  // Update Methods
 
   const setTodosWrapper = (newTodos) => {
     window.localStorage.setItem("todos", JSON.stringify(newTodos));
@@ -50,9 +73,11 @@ const App = () => {
         ...todos,
         {
           text: todoText,
+          // priority: priority,
           isDone: false,
           dueDate: date,
-          overdue: false,
+          overdue: Date.parse(date) < currentTime,
+          tags: tags,
         },
       ]);
       setTodoText("");
@@ -67,6 +92,21 @@ const App = () => {
     setTodosWrapper(newTodos);
   };
 
+  const deleteTag = (key) => {
+    const newTags = tags.filter((_, index) => {
+      return index !== key;
+    });
+
+    setTags(newTags);
+  };
+
+  const toggleTagSelection = (key) => {
+    const newTags = [...tags];
+    newTags[key].selected = !newTags[key].selected;
+    console.log("new tags:", newTags);
+    setTags(newTags);
+  };
+
   const editTodo = (edit, key) => {
     const newTodos = [...todos];
     newTodos[key].text = edit;
@@ -76,6 +116,7 @@ const App = () => {
   const editDueDate = (edit, key) => {
     const newTodos = [...todos];
     newTodos[key].dueDate = edit;
+    newTodos[key].overdue = Date.parse(edit) < currentTime;
     setTodosWrapper(newTodos);
   };
 
@@ -85,6 +126,8 @@ const App = () => {
       !newTodos[newTodos.length - 1].isDone;
     setTodosWrapper(newTodos);
   };
+
+  // Effects
 
   useEffect(() => {
     const interval = setInterval(() => getCurrentTime(), 1000);
@@ -102,6 +145,9 @@ const App = () => {
         dueDate={date}
         setDueDate={setDate}
         addTodo={addTodo}
+        tags={tags}
+        removeTag={deleteTag}
+        selectTag={toggleTagSelection}
       />
 
       <TodoList
