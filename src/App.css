@@ -15,7 +15,7 @@ body {
 
 .App {
   padding: 1rem;
-  max-width: 60%;
+  max-width: 75%;
   margin: 0 auto;
   text-align: center;
   background: #333;
@@ -134,6 +134,9 @@ button {
   background: #cf972e;
 }
 
+.tag {
+cursor: pointer
+}
 
 textarea[name="formTodoInput"], input[name="formDueDate"] {
   background-color: #494847;
