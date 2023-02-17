@@ -28,6 +28,7 @@ Features have been implemented without the addition of new npm modules so the ap
 - [Screenshots](#screenshots)
 
 ## Implemented Features
+
 - Create a task
 - Delete a task
 - Set a due date and time manually or via datepicker (timepicker does not work in Firefox)
@@ -42,6 +43,7 @@ Features have been implemented without the addition of new npm modules so the ap
 - All-done message randomly chosen from set of messages and shown when there are no more tasks to complete
 
 ## Future features to implement
+
 - Allow user to create custom tags.
 - Allow user to create multiple lists.
 - Allow user to edit priority after creating a task
@@ -50,10 +52,11 @@ Features have been implemented without the addition of new npm modules so the ap
 - Create overview page of multiple lists
 
 ## Developer Notes:
+
 - Code may benefit from using Redux to keep state management cleaner and at top level of the app
 - Break code down into more react components for more modularity
 - Consider putting react component files into separate component folders with its local stylesheet
 
 ## Screenshots
-![Screenshot](./public/todolistempty.png)
-![Screenshot](./public/actionshot.png)
+
+![Demo](./public/demo.mp4)
