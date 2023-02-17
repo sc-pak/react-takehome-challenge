@@ -8,8 +8,19 @@ const TodoList = ({
   markDone,
   remove,
   removeTag,
+  seed,
 }) => {
-  let doneMessage = "Yer done did!";
+  let doneMessages = [
+    "Yer done did!",
+    "Got 'em!",
+    "You are done with all your tasks!",
+    "Time to surf!",
+    "Woot! All done!",
+    "Time to party!",
+    "All done!",
+    "Coffee break!",
+    "Tea break!",
+  ];
 
   return (
     <>
@@ -33,7 +44,7 @@ const TodoList = ({
         </div>
       ) : (
         <div className="empty">
-          <p>{doneMessage}</p>
+          <p>{doneMessages[Math.floor(seed * doneMessages.length)]}</p>
         </div>
       )}
     </>

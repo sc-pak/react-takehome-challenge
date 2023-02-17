@@ -55,6 +55,7 @@ const App = () => {
   );
 
   const [priority, setPriority] = useState("none");
+  const [seed, setSeed] = useState(Math.random());
 
   // Update Methods
 
@@ -186,6 +187,7 @@ const App = () => {
         markDone={markDone}
         currentTime={currentTime}
         removeTag={deleteTodoTag}
+        seed={seed}
       />
     </div>
   );
