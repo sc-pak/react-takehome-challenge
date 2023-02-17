@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
+import DoneList from "./DoneList";
 import SortDropdown from "./SortDropdown";
 import "./App.css";
 
@@ -151,7 +152,6 @@ const App = () => {
   };
 
   const sortTodos = (sortType) => {
-    console.log("inside sortTodo function with sortType: ", sortType);
     let sortedTodos = [...todos];
     let Priorities = {
       high: 3,
@@ -160,7 +160,6 @@ const App = () => {
       none: 0,
     };
     if (sortType.toLowerCase() === "earliest due date") {
-      console.log("sorting by earliest due date");
       sortedTodos.sort((a, b) => {
         if (a.dueDate > b.dueDate) {
           return 1;
@@ -171,7 +170,6 @@ const App = () => {
         }
       });
     } else if (sortType.toLowerCase() === "highest priority") {
-      console.log("sorting by highest priority");
       sortedTodos.sort((a, b) => {
         if (Priorities[a.priority] > Priorities[b.priority]) {
           return -1;
@@ -182,7 +180,6 @@ const App = () => {
         }
       });
     } else if (sortType.toLowerCase() === "latest due date") {
-      console.log("sorting by highest priority");
       sortedTodos.sort((a, b) => {
         if (a.dueDate > b.dueDate) {
           return -1;
@@ -223,17 +220,36 @@ const App = () => {
         priority={priority}
       />
 
-      <div className="container">
-        <div className="container row justify-content-end mb-3">
-          <SortDropdown
-            sortBy={sortBy}
-            setSortBy={setSortBy}
-            sortTodos={sortTodos}
-          />
-        </div>
-      </div>
+      {todos.filter((todo) => !todo.isDone)?.length ? (
+        <>
+          <div className="container">
+            <div className="container row justify-content-end mb-3">
+              <SortDropdown
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                sortTodos={sortTodos}
+              />
+            </div>
+          </div>
 
-      <TodoList
+          <TodoList
+            list={todos}
+            remove={deleteTodo}
+            edit={edit}
+            editTodo={editTodo}
+            setEdit={setEdit}
+            editDueDate={editDueDate}
+            markDone={markDone}
+            currentTime={currentTime}
+            removeTag={deleteTodoTag}
+            seed={seed}
+          />
+        </>
+      ) : (
+        ""
+      )}
+
+      <DoneList
         list={todos}
         remove={deleteTodo}
         edit={edit}

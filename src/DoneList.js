@@ -1,6 +1,6 @@
 import Todo from "./Todo";
 
-const TodoList = ({
+const DoneList = ({
   currentTime,
   editTodo,
   list,
@@ -8,29 +8,15 @@ const TodoList = ({
   markDone,
   remove,
   removeTag,
-  seed,
 }) => {
-  let doneMessages = [
-    "Yer done did!",
-    "Got 'em!",
-    "You are done with all your tasks!",
-    "Time to surf!",
-    "Woot! All done!",
-    "Time to party!",
-    "All done!",
-    "Coffee break!",
-    "Tea break!",
-  ];
-
   return (
     <>
-      {list.filter((todo) => !todo.isDone)?.length ? (
+      {list.filter((todo) => todo.isDone)?.length ? (
         <div className="container todo-list">
+          <h2>Completed To-Dos</h2>
           <ul className="list-group">
             {list.map((todo, index) =>
               todo.isDone ? (
-                ""
-              ) : (
                 <Todo
                   key={index}
                   index={index}
@@ -42,17 +28,17 @@ const TodoList = ({
                   remove={remove}
                   removeTag={removeTag}
                 />
+              ) : (
+                ""
               )
             )}
           </ul>
         </div>
       ) : (
-        <div className="empty">
-          <p>{doneMessages[Math.floor(seed * doneMessages.length)]}</p>
-        </div>
+        ""
       )}
     </>
   );
 };
 
-export default TodoList;
+export default DoneList;
