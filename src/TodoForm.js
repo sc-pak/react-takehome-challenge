@@ -15,7 +15,7 @@ const TodoForm = ({
   priority,
 }) => {
   return (
-    <div className="container mb-4">
+    <div className="container mb-4 border-bottom border-white">
       <div className="textInput-group container align-self-center mb-2">
         <textarea
           className={"form-control"}
@@ -79,7 +79,7 @@ const TodoForm = ({
         </div>
       </div>
 
-      <div className="createTaskButton-group container justify-content-center">
+      <div className="createTaskButton-group container justify-content-center mb-4">
         <button
           className="col-12 add-button btn btn-outline-secondary"
           onClick={addTodo}

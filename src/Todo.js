@@ -67,7 +67,11 @@ function Todo({
 
               <div className="tags row text-start">
                 <div key={index} className={"text-start col-auto"}>
-                  <PriorityTag text={todo.priority} />
+                  {todo.priority !== "none" ? (
+                    <PriorityTag text={todo.priority} />
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
