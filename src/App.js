@@ -5,24 +5,32 @@ import DoneList from "./DoneList";
 import SortDropdown from "./SortDropdown";
 import "./App.css";
 
+/**
+ * This method converts a date string into a standard ISO local system time format.
+ * The Date object and its prototype methods tend to treat the date inputs as UTC time values,
+ * even if a local time string is set as a parameter. This helper method handles inputs from the
+ * datepicker and converts it accordingly in order for it to be used in the rest of the app.
+ *
+ * @param {The datetime string from the default datepicker} date
+ * @returns a datestring converted to local time and in local ISO string format: YYYY-MM-DDThh:mm:ss
+ */
 const localizeISODateString = (date) => {
-  // Get time difference from UTC to local time zone in minutes
-  let td = new Date(date).getTimezoneOffset();
+  let timeDiffinMins = new Date(date).getTimezoneOffset();
 
-  // Get millisecond representation of date value
   let milleseconds = Date.parse(date);
 
-  // Subtract time difference from date value and convert to ISO string
-  let UCTISODateString = new Date(milleseconds - td * 60 * 1000).toISOString();
+  let ISODateStringInUTCFormat = new Date(
+    milleseconds - timeDiffinMins * 60 * 1000
+  ).toISOString();
 
-  /* Converting from new Date() object to ISO string assumes UCT timezone, 
-  so remove UCT indication YYYY-MM-DDThh:mm:ss.sssZ -> YYYY-MM-DDThh:mm:ss */
-  const split = UCTISODateString.split(":");
+  /* Remove UCT indication YYYY-MM-DDThh:mm:ss.sssZ -> YYYY-MM-DDThh:mm:ss */
+  const split = ISODateStringInUTCFormat.split(":");
   return split[0] + ":" + split[1]; //YYYY-MM-DDThh:mm:ss
 };
 
 /**
  * Main Todo App function
+ *
  * @returns rendering of Todo App
  */
 const App = () => {
@@ -62,16 +70,27 @@ const App = () => {
 
   // Update Methods
 
+  /**
+   *Updates state of todos and saves it to localstorage
+   * @param {array} newTodos the todo array to be saved to localstorage and set to app state todos
+   */
   const setTodosWrapper = (newTodos) => {
     window.localStorage.setItem("todos", JSON.stringify(newTodos));
-    return setTodos(newTodos);
+    setTodos(newTodos);
   };
 
+  /**
+   * Gets current system time
+   * @returns current time
+   */
   const getCurrentTime = () => {
     setCurrentTime(new Date());
     return currentTime;
   };
 
+  /**
+   * Adds a task to todos object and updates app states.
+   */
   const addTodo = () => {
     if (todoText !== "") {
       setTodosWrapper([
@@ -93,6 +112,10 @@ const App = () => {
     }
   };
 
+  /**
+   * Delete a todo and update todos state
+   * @param {int} key the todo index in the todos array
+   */
   const deleteTodo = (key) => {
     const newTodos = todos.filter((_, index) => {
       return index !== key;
@@ -100,6 +123,11 @@ const App = () => {
     setTodosWrapper(newTodos);
   };
 
+  /**
+   * TODO: This method will delete a specific todo item's tag whenever tags are implemented and available
+   * @param {int} todoKey
+   * @param {int} tagKey
+   */
   const deleteTodoTag = (todoKey, tagKey) => {
     todos[todoKey].tags = todos[todoKey].tags.filter((_, index) => {
       return index !== tagKey;
@@ -107,6 +135,10 @@ const App = () => {
     setTodosWrapper(todos);
   };
 
+  /**
+   * TODO: This method will delete available tags in the todo input form whenever tags are implemented
+   * @param {int} key
+   */
   const deleteAvailableTag = (key) => {
     const newTags = tags.filter((_, index) => {
       return index !== key;
@@ -115,6 +147,10 @@ const App = () => {
     setTags(newTags);
   };
 
+  /**
+   * Updates priority state for indicating which priority is selected in the todo form
+   * @param {string} selection
+   */
   const selectPriority = (selection) => {
     if (priority === "none") {
       setPriority(selection);
@@ -125,18 +161,32 @@ const App = () => {
     }
   };
 
+  /**
+   * Toggles the tag that was selected or unselected
+   * @param {int} key
+   */
   const toggleTagSelection = (key) => {
     const newTags = [...tags];
     newTags[key].selected = !newTags[key].selected;
     setTags(newTags);
   };
 
+  /**
+   * Updates todos array with the subject todo and its edited text
+   * @param {string} edit the edited todo text
+   * @param {int} key the index of the subjected todo index in the array of todos
+   */
   const editTodo = (edit, key) => {
     const newTodos = [...todos];
     newTodos[key].text = edit;
     setTodosWrapper(newTodos);
   };
 
+  /**
+   * Updates duedate for the specific todo in the todos array
+   * @param {date-time string} edit
+   * @param {int} key
+   */
   const editDueDate = (edit, key) => {
     const newTodos = [...todos];
     newTodos[key].dueDate = edit;
@@ -144,6 +194,10 @@ const App = () => {
     setTodosWrapper(newTodos);
   };
 
+  /**
+   * Toggles the boolean state of the specified todo's isDone property and updates the todo array
+   * @param {int} key
+   */
   const markDone = (key) => {
     const newTodos = [...todos.filter((_, index) => index !== key), todos[key]];
     newTodos[newTodos.length - 1].isDone =
@@ -151,6 +205,10 @@ const App = () => {
     setTodosWrapper(newTodos);
   };
 
+  /**
+   * Sorts the todo array according to the sortType given.
+   * @param {string} sortType
+   */
   const sortTodos = (sortType) => {
     let sortedTodos = [...todos];
     let Priorities = {
@@ -196,6 +254,7 @@ const App = () => {
 
   // Effects
 
+  // Gets the current time at every second to check todo due dates for overdue state
   useEffect(() => {
     const interval = setInterval(() => getCurrentTime(), 1000);
 

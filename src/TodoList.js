@@ -11,15 +11,16 @@ const TodoList = ({
   seed,
 }) => {
   let doneMessages = [
-    "Yer done did!",
-    "Got 'em!",
-    "You are done with all your tasks!",
-    "Time to surf!",
+    "Yer done did! 🤙🏾🤙🏽🤙",
+    "Got 'em! 🎯",
+    "Time to go surfing! 🏄🏾",
     "Woot! All done!",
-    "Time to party!",
-    "All done!",
-    "Coffee break!",
-    "Tea break!",
+    "Time to party! 🥳",
+    "All done! ✔️",
+    "Time for a coffee break! ☕",
+    "Tea time! 🍵",
+    "Boba break! 🧋",
+    "Time for some meditation. 🧘🏽",
   ];
 
   return (
