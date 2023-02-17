@@ -1,4 +1,3 @@
-import Tags from "./Tags";
 import Priorities from "./Priorities";
 
 const TodoForm = ({
@@ -69,12 +68,6 @@ const TodoForm = ({
               priority={priority}
             />
           </div>
-
-          {/* <div className="col-3 text-end align-self-center">
-            <button className="badge bg-secondary" style={{ width: "auto" }}>
-              Add Tag
-            </button>
-          </div> */}
         </div>
       </div>
 

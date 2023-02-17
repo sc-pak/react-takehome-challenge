@@ -1,5 +1,3 @@
-import Tags from "./Tags";
-import Priorities from "./Priorities";
 import PriorityTag from "./PriorityTag";
 
 function Todo({

@@ -20,7 +20,7 @@ const localizeISODateString = (date) => {
 };
 
 /**
- * Main App function
+ * Main Todo App function
  * @returns rendering of Todo App
  */
 const App = () => {
@@ -75,7 +75,6 @@ const App = () => {
         ...todos,
         {
           text: todoText,
-          // priority: priority,
           isDone: false,
           dueDate: date,
           overdue: Date.parse(date) < currentTime,

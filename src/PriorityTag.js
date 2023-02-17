@@ -1,15 +1,4 @@
-function PriorityTag({
-  todoIndex,
-  index,
-  text,
-  color,
-  isSelected,
-  remove,
-  select,
-  setPriority,
-  selectPriority,
-  priority,
-}) {
+function PriorityTag({ text, selectPriority, priority }) {
   let tagColor = "";
 
   if (text === "high") {
