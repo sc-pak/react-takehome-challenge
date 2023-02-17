@@ -21,7 +21,6 @@ You may also see any lint errors in the console.
 This is a to-do list app made for an interview take-home challenge.
 
 ## Features
-
 - Create a task
 - Set a due date and time manually or via datepicker (timepicker does not work in Firefox)
 - select high, medium, low priority for a task
@@ -31,7 +30,18 @@ This is a to-do list app made for an interview take-home challenge.
 - Todos persist in localstorage
 - Todos are color coded according to priority/overdue
 - Sort by priority, earliest due dates, latest due dates
-- Completed list
+- Show separate list of completed tasks marked done
 
+## Future features to implement
+- Allow user to create custom tags.
+- Allow user to create multiple lists.
+- Filter/search for specific tasks (e.g. by keyword search, tag(s), date)
+- Make sublist (for breaking down todos into smaller tasks)
+- Create overview page of multiple lists
+
+## Developer Notes:
+- Code may benefit from using Redux to keep state management cleaner and at top level of the app
+
+## Screenshots
 ![Screenshot](./public/todolistempty.png)
 ![Screenshot](./public/actionshot.png)
