@@ -21,7 +21,7 @@ const localizeISODateString = (date) => {
 
 /**
  * Main App function
- * @returns App <div> rendering
+ * @returns rendering of Todo App
  */
 const App = () => {
   // States
@@ -56,8 +56,6 @@ const App = () => {
 
   const [priority, setPriority] = useState("none");
 
-  // const [priority, setPriority] = useState(0);
-
   // Update Methods
 
   const setTodosWrapper = (newTodos) => {
@@ -86,6 +84,7 @@ const App = () => {
       ]);
       setTodoText("");
       setDate(localizeISODateString(new Date().toISOString()));
+      setPriority("none");
     } else {
       // Todo: blink text input in form to indicate why task was not created
     }
