@@ -30,6 +30,8 @@ This is a to-do list app made for an interview take-home challenge.
 - Todos can be deleted
 - Todos persist in localstorage
 - Todos are color coded according to priority/overdue
+- Sort by priority, earliest due dates, latest due dates
+- Completed list
 
 ![Screenshot](./public/todolistempty.png)
-![Screenshot](./public/todolist.png)
+![Screenshot](./public/actionshot.png)
