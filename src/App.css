@@ -13,6 +13,16 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 .App {
   padding: 1rem;
   max-width: 75%;
@@ -143,7 +153,7 @@ textarea[name="formTodoInput"], input[name="formDueDate"] {
   color: white;
   border: none;
   min-height: 1.5rem;
-  height: 2.2rem;
+  height: auto;
 }
 
 textarea[name="formTodoInput"]::placeholder {

@@ -1,4 +1,6 @@
 import Tags from "./Tags";
+import Priorities from "./Priorities";
+import PriorityTag from "./PriorityTag";
 
 function Todo({
   todo,
@@ -8,6 +10,7 @@ function Todo({
   markDone,
   editDueDate,
   remove,
+  removeTag,
 }) {
   return (
     <li
@@ -23,17 +26,17 @@ function Todo({
             <div className="todo-entry col mx-1">
               <div className="row">
                 <textarea
-                  className="col mb-1"
+                  className="form-control col mb-1"
                   type="text"
                   value={todo.text}
                   onChange={(e) => {
                     editTodo(e.target.value, index);
                   }}
-                  style={{ border: "none" }}
+                  style={{ background: "#333", color: "white" }}
                 ></textarea>
               </div>
 
-              <div className="duedate-group row text-start">
+              <div className="duedate-group row text-start justify-content-start">
                 {Date.parse(todo.dueDate) < currentTime ? (
                   <span className="badge text-bg-danger align-self-center">
                     overdue
@@ -42,15 +45,15 @@ function Todo({
                   ""
                 )}
                 <label
-                  className="col-2 align-self-center"
+                  className="col-2 text-end align-self-center"
                   htmlFor="dueDate"
                   style={{ color: "white" }}
                 >
                   Due:
                 </label>
-                <div className="col-10 align-self-center ms-auto">
+                <div className="col-8 align-self-center">
                   <input
-                    className="text-center align-self-center"
+                    className="col-md-8 text-end align-self-center"
                     name="todoDueDate"
                     type="datetime-local"
                     value={todo.dueDate}
@@ -63,7 +66,9 @@ function Todo({
               </div>
 
               <div className="tags row text-start">
-                <Tags list={todo.tags} />
+                <div key={index} className={"text-start col-auto"}>
+                  <PriorityTag text={todo.priority} />
+                </div>
               </div>
             </div>
 

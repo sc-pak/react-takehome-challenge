@@ -53,7 +53,10 @@ const App = () => {
       },
     ]
   );
-  // const [priority, setPriority] = useState(null);
+
+  const [priority, setPriority] = useState("none");
+
+  // const [priority, setPriority] = useState(0);
 
   // Update Methods
 
@@ -78,10 +81,13 @@ const App = () => {
           dueDate: date,
           overdue: Date.parse(date) < currentTime,
           tags: tags,
+          priority: priority,
         },
       ]);
       setTodoText("");
       setDate(localizeISODateString(new Date().toISOString()));
+    } else {
+      // Todo: blink text input in form to indicate why task was not created
     }
   };
 
@@ -92,12 +98,30 @@ const App = () => {
     setTodosWrapper(newTodos);
   };
 
-  const deleteTag = (key) => {
+  const deleteTodoTag = (todoKey, tagKey) => {
+    todos[todoKey].tags = todos[todoKey].tags.filter((_, index) => {
+      return index !== tagKey;
+    });
+    setTodosWrapper(todos);
+  };
+
+  const deleteAvailableTag = (key) => {
+    console.log(tags);
     const newTags = tags.filter((_, index) => {
       return index !== key;
     });
 
     setTags(newTags);
+  };
+
+  const selectPriority = (selection) => {
+    if (priority === "none") {
+      setPriority(selection);
+    } else if (priority === selection) {
+      setPriority("none");
+    } else {
+      setPriority(selection);
+    }
   };
 
   const toggleTagSelection = (key) => {
@@ -146,8 +170,11 @@ const App = () => {
         setDueDate={setDate}
         addTodo={addTodo}
         tags={tags}
-        removeTag={deleteTag}
+        removeTag={deleteAvailableTag}
         selectTag={toggleTagSelection}
+        selectPriority={selectPriority}
+        setPriority={setPriority}
+        priority={priority}
       />
 
       <TodoList
@@ -159,6 +186,7 @@ const App = () => {
         editDueDate={editDueDate}
         markDone={markDone}
         currentTime={currentTime}
+        removeTag={deleteTodoTag}
       />
     </div>
   );

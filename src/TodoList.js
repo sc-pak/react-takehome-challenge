@@ -7,6 +7,7 @@ const TodoList = ({
   editDueDate,
   markDone,
   remove,
+  removeTag,
 }) => {
   return (
     <>
@@ -23,6 +24,7 @@ const TodoList = ({
                 markDone={markDone}
                 editDueDate={editDueDate}
                 remove={remove}
+                removeTag={removeTag}
               />
             ))}
           </ul>

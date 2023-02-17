@@ -1,4 +1,5 @@
 import Tags from "./Tags";
+import Priorities from "./Priorities";
 
 const TodoForm = ({
   todoText,
@@ -9,12 +10,15 @@ const TodoForm = ({
   tags,
   removeTag,
   selectTag,
+  setPriority,
+  selectPriority,
+  priority,
 }) => {
   return (
     <div className="container mb-4">
       <div className="textInput-group container align-self-center mb-2">
         <textarea
-          className="form-control"
+          className={"form-control"}
           type="text"
           name="formTodoInput"
           value={todoText}
@@ -50,21 +54,28 @@ const TodoForm = ({
 
       <div className="tagSelect-group container mb-2">
         <div className="row text-start justify-content-start ms-auto align-self-end">
-          <div className="col-3 text-start align-self-center">
+          <div className="col-4 text-start align-self-center">
             <label htmlFor="dueDate" style={{ color: "white" }}>
-              Select Tags:
+              Select Priority:
             </label>
           </div>
 
-          <div className="col-6 text-start align-self-center">
-            <Tags list={tags} remove={removeTag} select={selectTag} />
+          <div className="col-8">
+            <Priorities
+              list={tags}
+              remove={removeTag}
+              select={selectTag}
+              setPriority={setPriority}
+              selectPriority={selectPriority}
+              priority={priority}
+            />
           </div>
 
-          <div className="col-3 text-end align-self-center">
+          {/* <div className="col-3 text-end align-self-center">
             <button className="badge bg-secondary" style={{ width: "auto" }}>
               Add Tag
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
